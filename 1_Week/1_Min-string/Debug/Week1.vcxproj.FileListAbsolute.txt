@@ -1,0 +1,4 @@
+C:\prj\CPP_white_belt\Week1\Debug\Week1.exe
+C:\prj\CPP_white_belt\Week1\Debug\Week1.pdb
+C:\prj\CPP_white_belt\1_Week\1_Min-string\Debug\1_Min-String.exe
+C:\prj\CPP_white_belt\1_Week\1_Min-string\Debug\1_Min-String.pdb
