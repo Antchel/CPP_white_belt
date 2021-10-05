@@ -11,10 +11,17 @@ int main()
 {
 	int a, b, c;
 	cin >> a >> b >> c; 
-	if (a == 0)
-		cout << -c/b;
-	if (b == 0)
-		cout << sqrt(-c / a) << -sqrt(-c / a);
+	if (a == 0) {
+		if (b != 0)
+			cout << -1.0 * c / b;
+	}
+	else {
+		double d = b * b - 4 * a * c;
+		if (d == 0)
+			cout << -1.0*b / (2 * a);
+		else if (d > 0){
+			cout << 0.5 * (-b + sqrt(d)) / a << " " << 0.5 * (-b - sqrt(d)) / (a);
+		}
+	}
 	
-
 }
