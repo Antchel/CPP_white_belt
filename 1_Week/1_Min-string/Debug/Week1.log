@@ -1,3 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Week1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Min_String.cpp
-  Week1.vcxproj -> C:\prj\CPP_white_belt\1_Week\1_Min-string\Debug\1_Min-String.exe
