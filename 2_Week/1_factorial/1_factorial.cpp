@@ -3,18 +3,17 @@
 
 int factorial( int val)
 {
+	if (val < 0)
+		return -1;
 	if (val <= 2)
 		return val;
-	int res;
-	int *fact = new int[val + 1];
-	fact[0] = 1;
-	fact[1] = 1;
-	for (int i = 2; i <=val; i++)
+	int res, fact_prev;
+	fact_prev = 2;
+	for (int i = 3; i <= val; i++)
 	{
-		fact[i] = fact[i - 1] * i;
+		res = fact_prev * i;
+		fact_prev = res;
 	}
-	res = fact[val];
-	delete[]fact;
 	return res;
 }
 
