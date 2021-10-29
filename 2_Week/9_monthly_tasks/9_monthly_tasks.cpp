@@ -3,11 +3,17 @@
 #include <string>
 #include <algorithm>
 #include <queue>
+#include <map>
 
 using namespace std;
 
 int main()
 {
+	map<int, string> data {{1, "one"}, {2, "two"}};
+	for (const auto& [key, val] : data)
+	{
+		cout << key << val << endl;
+	}
 	int dataSets, currMonth=0;
 	cin >> dataSets;
 	int daysInMonth[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
@@ -57,6 +63,7 @@ int main()
 			{
 				cout << schedule[day - 1][i] << " ";
 			}
+			cout << endl;
 		}
 	}
 	return 0;
