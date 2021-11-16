@@ -37,7 +37,7 @@ int main()
 {
     LectureTitle title(
         Specialization("C++"),
-        Course("WHite belt"),
+        Course("White belt"),
         Week("4th")
     );
 }
