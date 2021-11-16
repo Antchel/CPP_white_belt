@@ -8,6 +8,7 @@ using namespace std;
 int main()
 {
     vector<string> dict;
+    ofstream f("output.txt");
     ifstream file("input.txt");
     if (!file.is_open()) {
         cout << "Error!" << endl;
@@ -17,9 +18,12 @@ int main()
     while (getline(file, line)) {
         dict.push_back(line);
     }
-    for (const string& l : dict) {
-        cout << l << endl;
-    }
     file.close();
+
+    for (const string& l : dict) {
+        f << l << endl;
+    }
+    f.close();
+
     return 0;
 }
