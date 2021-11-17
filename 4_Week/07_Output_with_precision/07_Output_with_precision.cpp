@@ -4,6 +4,8 @@
 #include <vector>
 #include <iomanip>
 
+// author : Golovenko Anton
+
 using namespace std;
 
 int main()
