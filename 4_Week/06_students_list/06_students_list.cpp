@@ -81,9 +81,8 @@ int main()
                     << "." << studentsList.at(studentId - 1).birthmonth << "." 
                     << studentsList.at(studentId - 1).birthyear << endl;
             }
-            else {
+            else
                 cout << "Bad request" << endl;
-            }
         }
         catch (const std::exception&)
         {
