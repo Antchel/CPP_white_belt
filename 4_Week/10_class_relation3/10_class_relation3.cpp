@@ -17,7 +17,7 @@ public:
             this->numerator = numerator;
             this->denominator = 1;
         }
-        
+
         int val = gcd(numerator, denominator);
         this->numerator = numerator / val;
         this->denominator = denominator / val;
@@ -46,47 +46,36 @@ bool operator== (Rational a, Rational b) {
     return ((a.Numerator() == b.Numerator()) && (a.Denominator() == b.Denominator()));
 };
 
-Rational& operator+(Rational a, Rational b) {
-    Rational res{   a.Numerator()* b.Denominator() + 
-                    b.Numerator()* a.Denominator(), a.Denominator()*b.Denominator()};
+Rational& operator* (Rational a, Rational b) {
+    Rational res (a.Numerator() * b.Numerator(), a.Denominator() * b.Denominator());
     return res;
-};
+}
 
-Rational& operator-(Rational a, Rational b) {
-    Rational res{ a.Numerator() * b.Denominator() -
-                    b.Numerator() * a.Denominator(), a.Denominator() * b.Denominator() };
+Rational& operator/ (Rational a, Rational b) {
+    Rational res(a.Numerator() * b.Denominator(), a.Denominator() * b.Numerator());
     return res;
-};
+}
+
 int main() {
     {
-        Rational r1(4, 6);
-        Rational r2(2, 3);
-        bool equal = r1 == r2;
+        Rational a(2, 3);
+        Rational b(4, 3);
+        Rational c = a * b;
+        bool equal = c == Rational(8, 9);
         if (!equal) {
-            cout << "4/6 != 2/3" << endl;
+            cout << "2/3 * 4/3 != 8/9" << endl;
             return 1;
         }
     }
 
     {
-        Rational a(2, 3);
-        Rational b(4, 3);
-        Rational c = a + b;
-        bool equal = c == Rational(2, 1);
+        Rational a(5, 4);
+        Rational b(15, 8);
+        Rational c = a / b;
+        bool equal = c == Rational(2, 3);
         if (!equal) {
-            cout << "2/3 + 4/3 != 2" << endl;
+            cout << "5/4 / 15/8 != 2/3" << endl;
             return 2;
-        }
-    }
-
-    {
-        Rational a(5, 7);
-        Rational b(2, 9);
-        Rational c = a - b;
-        bool equal = c == Rational(31, 63);
-        if (!equal) {
-            cout << "5/7 - 2/9 != 31/63" << endl;
-            return 3;
         }
     }
 
