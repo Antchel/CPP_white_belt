@@ -1,6 +1,9 @@
 #pragma once
+#include <set>
 #include <vector>
 #include <string>
+#include <map>
+#include <sstream>
 #include "Date.h"
 
 using namespace std;
@@ -11,11 +14,13 @@ public:
     bool DeleteEvent(const Date& date, const string& event);
     int  DeleteDate(const Date& date);
 
-    vector<Date> Find(const Date& date) const;
+    void Find(const Date& date) const;
 
     void Print() const;
 
 private:
-    vector<pair<string, string>> dbSet;
+    map<Date, set<string>> dbSet;
 
 };
+
+ostream& operator << (ostream& stream, const Database& db);
