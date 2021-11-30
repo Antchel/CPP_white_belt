@@ -14,7 +14,7 @@ public:
     bool DeleteEvent(const Date& date, const string& event);
     int  DeleteDate(const Date& date);
 
-    void Find(const Date& date) const;
+    set<string> Find(const Date& date) const;
 
     void Print() const;
 

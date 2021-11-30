@@ -1,4 +1,5 @@
 #include "Date.h"
+#include <sstream>
 
 Date::Date(int new_day, int new_month, int new_year) {
     if (new_year < 0)
@@ -31,4 +32,28 @@ bool operator<(const Date& lhs, const Date& rhs) {
 	lhs_days = lhs.GetYear() * 365 + lhs.GetMonth() * 30 + lhs.GetDay();
 	rhs_days = rhs.GetYear() * 365 + rhs.GetMonth() * 30 + rhs.GetDay();
 	return lhs_days < rhs_days ? true : false;
+}
+
+Date ParseDate(const string& date) {
+    istringstream date_stream(date);
+    bool ok = true;
+
+    int year;
+    ok = ok && (date_stream >> year);
+    ok = ok && (date_stream.peek() == '-');
+    date_stream.ignore(1);
+
+    int month;
+    ok = ok && (date_stream >> month);
+    ok = ok && (date_stream.peek() == '-');
+    date_stream.ignore(1);
+
+    int day;
+    ok = ok && (date_stream >> day);
+    ok = ok && date_stream.eof();
+
+    if (!ok) {
+        throw logic_error("Wrong date format: " + date);
+    }
+    return Date(year, month, day);
 }

@@ -17,3 +17,4 @@ private:
 };
 
 bool operator<(const Date& lhs, const Date& rhs);
+Date ParseDate(const string& date);

@@ -6,26 +6,48 @@
 using namespace std;
 
 int main() {
-    Database db;
+    try {
+        Database db;
 
-    string command;
-    while (getline(cin, command)) {
-        if (command == "Add") {
-            Date date(10,2,2020);
-            string evnt;
-            db.AddEvent(date, evnt);
-        }
-        else if (command == "Del") {
-            //db.DeleteEvent();
-        }
-        else if (command == "Find") {
-            Date date(10, 2, 2020);
-            db.Find(date);
-        }
-        else if (command == "Print") {
-            db.Print();
+        string commandLine;
+        while (getline(cin, commandLine)) {
+            stringstream ss(commandLine);
+            string command;
+            ss >> command;
+            if (command == "Add") {
+                string dateStr, eventStr;
+                ss >> dateStr >> eventStr;
+                Date date = ParseDate(dateStr);
+                db.AddEvent(date, eventStr);
+            }
+            else if (command == "Del") {
+                string dateStr, eventStr;
+                ss >> dateStr >> eventStr;
+                Date date = ParseDate(dateStr);
+                db.DeleteEvent(date, eventStr);
+            }
+            else if (command == "Find") {
+                string dateStr;
+                ss >> dateStr;
+                Date date = ParseDate(dateStr);
+                set<string> events;
+                events = db.Find(date);
+
+                for (auto it = events.begin(); it != events.end(); it++) {
+                    cout << *it << endl;
+                }
+            }
+            else if (command == "Print") {
+                db.Print();
+            }
+            else {
+                cout << "Unknown command " + command << endl;
+            }
         }
     }
-
+    catch (exception& e) {
+        cout << e.what() << endl;
+    }
+    
     return 0;
 }

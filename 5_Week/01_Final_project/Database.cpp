@@ -5,30 +5,46 @@
 using namespace std;
 
 void Database::AddEvent(const Date& date, const string& event) {
-
+	dbSet[date].insert(event);
 };
 bool Database::DeleteEvent(const Date& date, const string& event) {
-	return 0;
+	if (dbSet.count(date) != 0) {
+		auto it = dbSet[date].find(event);
+		if (it != dbSet[date].end()) dbSet[date].erase(it);
+		else return false;
+		return true;
+	}
+	return false;
 }
 int  Database::DeleteDate(const Date& date) {
-	return 0;
+	auto it = dbSet.find(date);
+	if (it != dbSet.end()) {
+		dbSet[date].erase(begin(dbSet[date]), end(dbSet[date]));
+		dbSet.erase(it);
+		return EXIT_SUCCESS;
+	}
+	return EXIT_FAILURE;
 }
 
-void Database::Find(const Date& date) const {
-	
+
+set<string> Database::Find(const Date& date) const {
+	if (dbSet.count(date) != 0) {
+		return dbSet.at(date);
+	}
+	return {};
 }
 
 void Database::Print() const {
 	for (const auto& el : dbSet) {
 		for (const auto& str : el.second) {
-			cout << setfill(4) << to_string(el.first.GetYear()) <<
-				"-" << setfill(2) << to_string(el.first.GetMonth()) <<
-				"-" << setfill(2) << to_string(el.first.GetDay()) << " " << str << endl;
+			cout << el.first << " " << str << endl;
 		}
 	}
 }
 
-ostream& operator << (ostream& stream, const Database& db) {
-	
+ostream& operator << (ostream& stream, const Date& el) {
+	stream << setw(4) << setfill(0) << to_string(el.GetYear()) <<
+		"-" << setw(2) << setfill(0) << to_string(el.GetMonth()) <<
+		"-" << setw(2) << setfill(0) << to_string(el.GetDay());
 	return stream;
 }
