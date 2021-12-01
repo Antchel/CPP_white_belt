@@ -23,4 +23,4 @@ private:
 
 };
 
-ostream& operator << (ostream& stream, const Database& db);
+ostream& operator << (ostream& stream, const Date& el);

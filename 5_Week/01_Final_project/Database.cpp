@@ -19,13 +19,12 @@ bool Database::DeleteEvent(const Date& date, const string& event) {
 int  Database::DeleteDate(const Date& date) {
 	auto it = dbSet.find(date);
 	if (it != dbSet.end()) {
-		dbSet[date].erase(begin(dbSet[date]), end(dbSet[date]));
+		int cnt = dbSet.at(date).size();
 		dbSet.erase(it);
-		return EXIT_SUCCESS;
+		return cnt;
 	}
-	return EXIT_FAILURE;
+	return 0;
 }
-
 
 set<string> Database::Find(const Date& date) const {
 	if (dbSet.count(date) != 0) {
@@ -43,8 +42,8 @@ void Database::Print() const {
 }
 
 ostream& operator << (ostream& stream, const Date& el) {
-	stream << setw(4) << setfill(0) << to_string(el.GetYear()) <<
-		"-" << setw(2) << setfill(0) << to_string(el.GetMonth()) <<
-		"-" << setw(2) << setfill(0) << to_string(el.GetDay());
+	stream << setw(4) << setfill('0') << to_string(el.GetYear()) <<
+		"-" << setw(2) << setfill('0') << to_string(el.GetMonth()) <<
+		"-" << setw(2) << setfill('0') << to_string(el.GetDay());
 	return stream;
 }

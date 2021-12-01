@@ -1,6 +1,7 @@
 ﻿#include "Database.h"
 #include "Date.h"
 #include <string>
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -22,9 +23,27 @@ int main() {
             }
             else if (command == "Del") {
                 string dateStr, eventStr;
-                ss >> dateStr >> eventStr;
+                ss >> dateStr;
+                if (!ss.eof()) {
+                    ss >> eventStr;
+                }
                 Date date = ParseDate(dateStr);
-                db.DeleteEvent(date, eventStr);
+                if (eventStr.empty()) {
+                    int cnt = db.DeleteDate(date);
+                    if (cnt)
+                        cout << "deleted " << cnt << " rows" << endl;
+                    else
+                        cout << "Nothing to delete" << endl;
+                }
+                    
+                else {
+                    if (db.DeleteEvent(date, eventStr))
+                        cout << "event deleted" << endl;
+                    else
+                        cout << "event doesn't alreay exist" << endl;
+                    
+                }
+                    
             }
             else if (command == "Find") {
                 string dateStr;
